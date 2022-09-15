@@ -1,0 +1,20 @@
+html {
+    text-align: center;
+    /*  #171515 -fade black
+        #cc0848 -blacky red
+        #010101 -blackish
+        #fe2567 -pink red
+        #fefdfd -hwhite
+    */
+}
+
+#calculator {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    min-height: 95vh;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #fefdfd;
+}
