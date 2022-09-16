@@ -4,7 +4,14 @@ const clearBtn = document.querySelector('#clear');
 
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
-        display_value.innerHTML += operandBtns[i].textContent;
+        if(display_value.innerHTML == 0) {
+            display_value.innerHTML = operandBtns[i].textContent
+        }
+
+        else {
+            display_value.innerHTML += operandBtns[i].textContent; // for value use attribute in HTML
+        }
+        
     });
 }
 
