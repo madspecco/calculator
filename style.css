@@ -18,3 +18,11 @@ html {
     overflow: hidden;
     background-color: #fefdfd;
 }
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+    border: solid 1px
+}
