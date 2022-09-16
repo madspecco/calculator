@@ -1,10 +1,9 @@
 html {
     text-align: center;
-    /*  #171515 -fade black
-        #cc0848 -blacky red
-        #010101 -blackish
-        #fe2567 -pink red
-        #fefdfd -hwhite
+    /*  #2C3639
+        #3F4E4F
+        #A27B5C
+        #DCD7C9
     */
 }
 
@@ -28,9 +27,26 @@ html {
 
 #display {
     display: flex;
-    grid-column: 1 / -1;
+    grid-column: 1 / -1; /* moves display <div> at top of grid */
+
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 5rem;
+    background-color: #2C3639;
 }
 
 #zero {
-    grid-column: span 2;
+    grid-column: span 2; /* extends button size two times */
+}
+
+.misc {
+    background-color: #3F4E4F;
+}
+
+.operator {
+    background-color: #A27B5C;
+}
+
+.operand {
+    background-color: #DCD7C9;
 }
