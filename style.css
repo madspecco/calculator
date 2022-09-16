@@ -35,6 +35,7 @@ html {
     font-size: 2.5rem;
     background-color: #2C3639;
     color: #DCD7C9;
+    /* overflow: hidden; */
 }
 
 #zero {

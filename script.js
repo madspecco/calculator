@@ -1,3 +1,15 @@
+const display_value = document.querySelector('#display');
+const operandBtns = document.querySelectorAll('.operand');
+const clearBtn = document.querySelector('#clear');
+
+for(let i = 0; i < operandBtns.length; i++) {
+    operandBtns[i].addEventListener('click', function() {
+        display_value.innerHTML += operandBtns[i].textContent;
+    });
+}
+
+clearBtn.onclick = () => { display_value.innerHTML = 0 };
+
 const add = function(operand1, operand2) {
     return operand1 + operand2;
 }
