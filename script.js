@@ -21,3 +21,9 @@ const divide = function (operand1, operand2) {
 }
 
 console.log(divide(9,4));
+
+function operate(operator, op1, op2) {
+    return operator(op1, op2);
+}
+
+console.log(operate(subtract, 15, 3));
