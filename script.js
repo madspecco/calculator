@@ -1,48 +1,75 @@
 const display_value = document.querySelector('#display');
 const operandBtns = document.querySelectorAll('.operand');
+
+const addBtn = document.querySelector('#addition');
+const substractBtn = document.querySelector('#subtract');
+const multiplyBtn = document.querySelector('#multiply');
+const divideBtn = document.querySelector('#divide');
+const equalBtn = document.querySelector('#equals');
+
+
 const clearBtn = document.querySelector('#clear');
 
+
+// Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
-        if(display_value.innerHTML == 0) {
-            display_value.innerHTML = operandBtns[i].textContent
+        if(display_value.textContent == 0) {
+            display_value.textContent = operandBtns[i].textContent;
         }
 
         else {
-            display_value.innerHTML += operandBtns[i].textContent; // for value use attribute in HTML
+            display_value.textContent += operandBtns[i].textContent; // for value use attribute in HTML
         }
         
     });
 }
 
+// Clear Display
 clearBtn.onclick = () => { display_value.innerHTML = 0 };
 
+/* 
+    1. Input first operand
+    2. Press Operator
+        a. Store Display Value in a variable
+        b. Reset Display
+    3. Input second operand
+    4. Press '='
+    5. Show result in display
+*/
+
+let firstOperand = 0;
+let secondOperand = 0;
+
+addBtn.onclick = () => {
+    firstOperand = display_value.textContent;
+    console.log(firstOperand);
+
+    
+}
+
+
+// Calculator Functions
 const add = function(operand1, operand2) {
     return operand1 + operand2;
 }
-
-console.log(add(2,3));
 
 const subtract = function (operand1, operand2) {
     return operand1 - operand2;
 }
 
-console.log(subtract(100, 50));
-
 const multiply = function (operand1, operand2) {
     return operand1 * operand2;
 }
 
-console.log(multiply(10, 10));
 
 const divide = function (operand1, operand2) {
     return operand1 / operand2;
 }
 
-console.log(divide(9,4));
-
+// Operate Function
 function operate(operator, op1, op2) {
     return operator(op1, op2);
 }
 
-console.log(operate(subtract, 15, 3));
+// console.log(operate(add, 2, 5));
