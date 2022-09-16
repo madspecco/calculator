@@ -30,3 +30,7 @@ html {
     display: flex;
     grid-column: 1 / -1;
 }
+
+#zero {
+    grid-column: span 2;
+}
