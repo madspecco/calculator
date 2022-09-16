@@ -21,8 +21,12 @@ html {
 
 #container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-
+    grid-template-columns: repeat(4, 6.25rem);
+    grid-template-rows: minmax(6.25rem, auto) repeat(5, 6rem);
     border: solid 1px
+}
+
+#display {
+    display: flex;
+    grid-column: 1 / -1;
 }
