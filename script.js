@@ -40,18 +40,25 @@ clearBtn.onclick = () => { display_value.innerHTML = 0 };
 
 let firstOperand = 0;
 let secondOperand = 0;
+let result = 0;
 
 addBtn.onclick = () => {
-    firstOperand = display_value.textContent;
+    firstOperand = Number(display_value.textContent);
+    display_value.textContent = 0;
     console.log(firstOperand);
 
+    equalBtn.onclick = () => {
+        secondOperand = Number(display_value.textContent);
+        console.log(secondOperand);
+        display_value.textContent = operate(add, firstOperand, secondOperand);
+    }
     
 }
 
 
 // Calculator Functions
 const add = function(operand1, operand2) {
-    return operand1 + operand2;
+    return Number(operand1 + operand2);
 }
 
 const subtract = function (operand1, operand2) {
