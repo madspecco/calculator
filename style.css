@@ -5,6 +5,7 @@ html {
         #A27B5C
         #DCD7C9
     */
+    font-family: 'Scientific Calculator LCD', sans-serif;
 }
 
 #calculator {
@@ -22,7 +23,7 @@ html {
     display: grid;
     grid-template-columns: repeat(4, 6.25rem);
     grid-template-rows: minmax(6.25rem, auto) repeat(5, 6rem);
-    border: solid 1px
+    border-radius: 1rem;
 }
 
 #display {
@@ -31,8 +32,9 @@ html {
 
     justify-content: flex-end;
     align-items: center;
-    font-size: 5rem;
+    font-size: 2.5rem;
     background-color: #2C3639;
+    color: #DCD7C9;
 }
 
 #zero {
@@ -49,4 +51,10 @@ html {
 
 .operand {
     background-color: #DCD7C9;
+}
+
+button {
+    cursor: pointer;
+    border-radius: .25rem;
+    font-family: 'Scientific Calculator LCD', sans-serif;
 }
