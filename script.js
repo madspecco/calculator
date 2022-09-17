@@ -1,4 +1,5 @@
 const display_value = document.querySelector('#display');
+const mini_display = document.querySelector('#op-display');
 const operandBtns = document.querySelectorAll('.operand');
 
 const addBtn = document.querySelector('#addition');
@@ -26,7 +27,7 @@ for(let i = 0; i < operandBtns.length; i++) {
 }
 
 // Clear Display
-clearBtn.onclick = () => { display_value.innerHTML = 0 };
+clearBtn.onclick = () => { display_value.textContent = 0; mini_display.textContent = '' };
 
 /* 
     1. Input first operand
@@ -45,12 +46,14 @@ let result = 0;
 addBtn.onclick = () => {
     firstOperand = Number(display_value.textContent);
     display_value.textContent = 0;
-    console.log(firstOperand);
+    mini_display.textContent = `${firstOperand} +`;
+    // console.log(firstOperand);
 
     equalBtn.onclick = () => {
         secondOperand = Number(display_value.textContent);
-        console.log(secondOperand);
+        // console.log(secondOperand);
         display_value.textContent = operate(add, firstOperand, secondOperand);
+        mini_display.textContent = `${firstOperand} + ${secondOperand} =`;
     }
     
 }
