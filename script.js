@@ -46,7 +46,7 @@ let result = 0;
 addBtn.onclick = () => {
     firstOperand = Number(display_value.textContent);
     display_value.textContent = 0;
-    mini_display.textContent = `${firstOperand} +`;
+    mini_display.textContent = `${firstOperand} ${addBtn.textContent}`;
     // console.log(firstOperand);
 
     equalBtn.onclick = () => {
@@ -56,6 +56,48 @@ addBtn.onclick = () => {
         mini_display.textContent = `${firstOperand} + ${secondOperand} =`;
     }
     
+}
+
+substractBtn.onclick = () => {
+    firstOperand = Number(display_value.textContent);
+    display_value.textContent = 0;
+    mini_display.textContent = `${firstOperand} ${substractBtn.textContent}`;
+    // console.log(firstOperand);
+
+    equalBtn.onclick = () => {
+        secondOperand = Number(display_value.textContent);
+        // console.log(secondOperand);
+        display_value.textContent = operate(subtract, firstOperand, secondOperand);
+        mini_display.textContent = `${firstOperand} ${substractBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
+    }
+}
+
+multiplyBtn.onclick = () => {
+    firstOperand = Number(display_value.textContent);
+    display_value.textContent = 0;
+    mini_display.textContent = `${firstOperand} ${multiplyBtn.textContent}`;
+    // console.log(firstOperand);
+
+    equalBtn.onclick = () => {
+        secondOperand = Number(display_value.textContent);
+        // console.log(secondOperand);
+        display_value.textContent = operate(multiply, firstOperand, secondOperand);
+        mini_display.textContent = `${firstOperand} ${multiplyBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
+    }
+}
+
+divideBtn.onclick = () => {
+    firstOperand = Number(display_value.textContent);
+    display_value.textContent = 0;
+    mini_display.textContent = `${firstOperand} ${divideBtn.textContent}`;
+    // console.log(firstOperand);
+
+    equalBtn.onclick = () => {
+        secondOperand = Number(display_value.textContent);
+        // console.log(secondOperand);
+        display_value.textContent = operate(divide, firstOperand, secondOperand);
+        mini_display.textContent = `${firstOperand} ${divideBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
+    }
 }
 
 

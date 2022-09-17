@@ -22,7 +22,7 @@ html {
 #container {
     display: grid;
     grid-template-columns: repeat(4, 6.25rem);
-    grid-template-rows: minmax(6.25rem, auto) repeat(6, 6rem);
+    grid-template-rows: minmax(3rem, auto) repeat(6, 6rem);
     border-radius: 1rem;
 }
 
