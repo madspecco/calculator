@@ -3,7 +3,7 @@ const mini_display = document.querySelector('#op-display');
 const operandBtns = document.querySelectorAll('.operand');
 
 const addBtn = document.querySelector('#addition');
-const substractBtn = document.querySelector('#subtract');
+const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equals');
@@ -55,20 +55,19 @@ addBtn.onclick = () => {
         display_value.textContent = operate(add, firstOperand, secondOperand);
         mini_display.textContent = `${firstOperand} + ${secondOperand} =`;
     }
-    
 }
 
-substractBtn.onclick = () => {
+subtractBtn.onclick = () => {
     firstOperand = Number(display_value.textContent);
     display_value.textContent = 0;
-    mini_display.textContent = `${firstOperand} ${substractBtn.textContent}`;
+    mini_display.textContent = `${firstOperand} ${subtractBtn.textContent}`;
     // console.log(firstOperand);
 
     equalBtn.onclick = () => {
         secondOperand = Number(display_value.textContent);
         // console.log(secondOperand);
         display_value.textContent = operate(subtract, firstOperand, secondOperand);
-        mini_display.textContent = `${firstOperand} ${substractBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
+        mini_display.textContent = `${firstOperand} ${subtractBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
     }
 }
 
