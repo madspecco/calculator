@@ -67,6 +67,16 @@ for(let i = 0; i < operatorBtns.length; i++) {
             mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
         }
 
+        op_pressed.onclick = () => {
+            console.log('Chain Command Attempted');
+            secondOperand = Number(display_value.textContent);
+            console.log(secondOperand);
+
+            result = operate(op_pressed.value, firstOperand, secondOperand);
+            display_value.textContent = result;
+            mini_display.textContent = `${result} ${op_pressed.value}`;
+        }
+
         }
     }
 
