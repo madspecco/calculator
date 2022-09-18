@@ -27,8 +27,15 @@ for(let i = 0; i < operandBtns.length; i++) {
     });
 }
 
+// Utility Function to reset Operands after an operation/clear
+function resetOperands(){
+    firstOperand = 0;
+    secondOperand = 0;
+    result = 0;
+}
+
 // Clear Display
-clearBtn.onclick = () => { display_value.textContent = 0; mini_display.textContent = '' };
+clearBtn.onclick = () => {display_value.textContent = 0; mini_display.textContent = ''; resetOperands()};
 
 /* 
     1. Input first operand
@@ -51,6 +58,13 @@ for(let i = 0; i < operatorBtns.length; i++) {
     // 2. Press Operator
     op_pressed.onclick = () => {
 
+        if(firstOperand !== 0) {
+            secondOperand = Number(display_value.textContent);
+            result = operate(op_pressed.value, firstOperand, secondOperand);
+            display_value.textContent = result;
+            mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
+            resetOperands();
+        }
         // a. Store Display Value
         // b. Reset Display
         firstOperand = Number(display_value.textContent);
@@ -65,18 +79,8 @@ for(let i = 0; i < operatorBtns.length; i++) {
             result = operate(op_pressed.value, firstOperand, secondOperand);
             display_value.textContent = result;
             mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
+            resetOperands();
         }
-
-        op_pressed.onclick = () => {
-            console.log('Chain Command Attempted');
-            secondOperand = Number(display_value.textContent);
-            console.log(secondOperand);
-
-            result = operate(op_pressed.value, firstOperand, secondOperand);
-            display_value.textContent = result;
-            mini_display.textContent = `${result} ${op_pressed.value}`;
-        }
-
         }
     }
 
