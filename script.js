@@ -57,20 +57,38 @@ for(let i = 0; i < operatorBtns.length; i++) {
     const op_pressed = operatorBtns[i];
     // 2. Press Operator
     op_pressed.onclick = () => {
-
-        if(firstOperand !== 0) {
-            secondOperand = Number(display_value.textContent);
-            result = operate(op_pressed.value, firstOperand, secondOperand);
-            display_value.textContent = result;
-            mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
-            resetOperands();
-        }
+        let pressed_value = op_pressed.value;
+        console.log(pressed_value);
         // a. Store Display Value
         // b. Reset Display
         firstOperand = Number(display_value.textContent);
         display_value.textContent = 0;
         // c. Update Mini Display
         mini_display.textContent = `${firstOperand} ${op_pressed.value}`;
+
+
+        addBtn.onclick = () => {
+            secondOperand = Number(display_value.textContent);
+            result = operate(addBtn.value, firstOperand, secondOperand);
+            console.log(result);
+            display_value.textContent = result;
+            mini_display.textContent = `${result} ${addBtn.value}`;
+            addBtn.disabled = true;
+        }
+
+        subtractBtn.onclick = () => {
+            mini_display.textContent = `${result} ${subtractBtn.value}`;
+
+            firstOperand = result;
+            console.log(firstOperand);
+
+            // need revising
+        }
+
+        // addBtn.disabled = true;
+        // subtractBtn.disabled = true;
+        // multiplyBtn.disabled = true;
+        // divideBtn.disabled = true;
         
         // 3. Input second operand then 4. Press '='
         equalBtn.onclick = () => {
@@ -79,8 +97,13 @@ for(let i = 0; i < operatorBtns.length; i++) {
             result = operate(op_pressed.value, firstOperand, secondOperand);
             display_value.textContent = result;
             mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
-            resetOperands();
-        }
+            
+            // addBtn.disabled = false;
+            // subtractBtn.disabled = false;
+            // multiplyBtn.disabled = false;
+            // divideBtn.disabled = false;
+        };
+
         }
     }
 
