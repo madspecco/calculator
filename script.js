@@ -2,14 +2,16 @@ const display_value = document.querySelector('#display');
 const mini_display = document.querySelector('#op-display');
 const operandBtns = document.querySelectorAll('.operand');
 const operatorBtns = document.querySelectorAll('.operator');
-const decimalBtn = document.querySelector('#decimal');
 
+
+const decimalBtn = document.querySelector('#decimal');
 const addBtn = document.querySelector('#addition');
 const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equals');
 const clearBtn = document.querySelector('#clear');
+const deleteBtn = document.querySelector('#delete');
 
 
 let firstOperand = 0;
@@ -17,9 +19,10 @@ let secondOperand = 0;
 let result = 0;
 let computed = 0;
 let decimalOnScreen = 0;
-
 let op_registered = 0;
 let operator = null;
+
+/* Utility Functions */
 
 // Clear Display
 clearBtn.onclick = () => {
@@ -30,6 +33,7 @@ clearBtn.onclick = () => {
     enableBtns();
 };
 
+
 // Utility Function that does the same as clicking the Clear Button
 function restart() {
     display_value.textContent = 0;
@@ -39,6 +43,7 @@ function restart() {
     enableBtns();
     enableDecimal();
 }
+
 
 // Utility Function to disable/enable buttons
 function enableBtns() {
@@ -55,6 +60,7 @@ function disableBtns() {
     divideBtn.disabled = true;
 }
 
+
 // Utility Function to reset Operands after an operation/clear
 function resetOperands(){
     firstOperand = 0;
@@ -62,12 +68,14 @@ function resetOperands(){
     result = 0;
 }
 
+
 // Utility function to enable and disable Decimal button
 decimalBtn.onclick = () => {decimalBtn.disabled = true;}
 function enableDecimal() {
     decimalBtn.disabled = false;
 }
 
+/* Core Functionality */
 
 // Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
@@ -116,6 +124,8 @@ for(let i = 0; i < operatorBtns.length; i++) {
     }
 }
 
+
+// After Inputting Second Operand
 equalBtn.onclick = () => {
     if(operator === null) {
         console.log("You suck at math, buddy.");
@@ -133,7 +143,6 @@ equalBtn.onclick = () => {
             computed = 1;
         }
 
-
         else {
             enableBtns();
             secondOperand = Number(display_value.textContent);
@@ -147,6 +156,17 @@ equalBtn.onclick = () => {
     }
 }
 
+
+// Backspace Button
+deleteBtn.onclick = () => {
+    if(display_value.textContent === '' || display_value.textContent.length === 1) {
+        display_value.textContent = '0';
+    }
+
+    else {
+        display_value.textContent = display_value.textContent.slice(0, -1);
+    }
+}
 
 
 // Calculator Functions
