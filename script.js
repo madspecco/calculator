@@ -34,6 +34,7 @@ clearBtn.onclick = () => {
     operator = null;
     resetOperands();
     enableBtns();
+    decimalBtn.disabled = false;
 };
 
 
@@ -133,7 +134,6 @@ equalBtn.onclick = () => {
 
     else {
         if(Number(display_value.textContent) === result) {
-            enableBtns();
             firstOperand = result;
             result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
 
@@ -154,7 +154,6 @@ equalBtn.onclick = () => {
     }
 }
 
-
 // Backspace Button
 deleteBtn.onclick = () => {
     if(display_value.textContent === '' || display_value.textContent.length === 1) {
@@ -162,6 +161,10 @@ deleteBtn.onclick = () => {
     }
 
     else {
+        console.log(display_value.textContent.slice(0, -1));
+        if(display_value.textContent.slice(0, -1).includes('.') === false) {
+            decimalBtn.disabled = false;
+        }
         display_value.textContent = display_value.textContent.slice(0, -1);
     }
 }
