@@ -30,6 +30,15 @@ clearBtn.onclick = () => {
     enableBtns();
 };
 
+// Utility Function that does the same as clicking the Clear Button
+function restart() {
+    display_value.textContent = 0;
+    mini_display.textContent = '';
+    operator = null;
+    resetOperands();
+    enableBtns();
+}
+
 // Utility Function to disable/enable buttons
 function enableBtns() {
     addBtn.disabled = false;
@@ -79,7 +88,7 @@ for(let i = 0; i < operandBtns.length; i++) {
 }
 
 
-
+// Use Calculator
 for(let i = 0; i < operatorBtns.length; i++) {
     operatorBtns[i].onclick = () => {
         operator = operatorBtns[i].value;
@@ -88,7 +97,6 @@ for(let i = 0; i < operatorBtns.length; i++) {
 
         firstOperand = Number(display_value.textContent);
         let currentFirst = firstOperand;
-        console.log(firstOperand + " holds firstOperand");
 
         mini_display.textContent = `${currentFirst} ${operator}`;
         display_value.textContent = currentFirst;
@@ -99,7 +107,6 @@ for(let i = 0; i < operatorBtns.length; i++) {
 equalBtn.onclick = () => {
     if(operator === null) {
         console.log("You suck at math, buddy.");
-
         resetOperands();
     }
 
