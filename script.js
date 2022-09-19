@@ -72,6 +72,12 @@ function enableDecimal() {
 // Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
+        if(operator === '/' && operandBtns[i].textContent === '0') {
+            alert('Did you just try to divide by 0?🤨🤨🤨');
+            alert("Don't worry, I gotchu.");
+            restart();
+        }
+
         if(firstOperand !== 0) {
             disableBtns();
         }
@@ -107,8 +113,6 @@ for(let i = 0; i < operatorBtns.length; i++) {
             display_value.textContent = currentFirst;
             enableDecimal();
         }
-
-        
     }
 }
 
