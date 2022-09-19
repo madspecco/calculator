@@ -12,6 +12,7 @@ const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equals');
 const clearBtn = document.querySelector('#clear');
 const deleteBtn = document.querySelector('#delete');
+const signBtn = document.querySelector('#sign');
 
 
 let firstOperand = 0;
@@ -166,6 +167,16 @@ deleteBtn.onclick = () => {
             decimalBtn.disabled = false;
         }
         display_value.textContent = display_value.textContent.slice(0, -1);
+    }
+}
+
+// Sign Button
+signBtn.onclick = () => {
+    if(Number(display_value.textContent) < 0 || display_value.textContent === '-0') {
+        display_value.textContent = display_value.textContent.substring(1);
+    }
+    else {
+        display_value.textContent = "-" + display_value.textContent;
     }
 }
 
