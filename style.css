@@ -6,6 +6,12 @@ html {
         #DCD7C9
     */
     font-family: 'Scientific Calculator LCD', sans-serif;
+    background-color: #DCD7C9;
+}
+
+h1 {
+    color:#2C3639;
+    margin-top: 5rem;
 }
 
 #calculator {
@@ -16,14 +22,15 @@ html {
     min-height: 95vh;
     height: 100vh;
     overflow: hidden;
-    background-color: #fefdfd;
+    background-color: #DCD7C9;
 }
 
 #container {
     display: grid;
     grid-template-columns: repeat(4, 6.25rem);
     grid-template-rows: minmax(3rem, auto) repeat(6, 6rem);
-    border-radius: 1rem;
+    border:#3F4E4F solid 1rem;
+    border-radius: 1.5rem;
 }
 
 #op-display {
@@ -73,4 +80,23 @@ button {
     cursor: pointer;
     border-radius: .25rem;
     font-family: 'Scientific Calculator LCD', sans-serif;
+}
+
+button:hover {
+    color: #DCD7C9;
+    background-color: #2C3639
+}
+
+button:active {
+  background-color: #2C3639;
+  box-shadow: 0 2.5px #2C3639;
+  transform: translateY(1px);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #DCD7C9;
+    color: #2C3639;
+    font-size: 18px;
 }
