@@ -2,14 +2,13 @@ const display_value = document.querySelector('#display');
 const mini_display = document.querySelector('#op-display');
 const operandBtns = document.querySelectorAll('.operand');
 const operatorBtns = document.querySelectorAll('.operator');
+const decimalBtn = document.querySelector('#decimal');
 
 const addBtn = document.querySelector('#addition');
 const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equals');
-
-
 const clearBtn = document.querySelector('#clear');
 
 
@@ -17,6 +16,7 @@ let firstOperand = 0;
 let secondOperand = 0;
 let result = 0;
 let computed = 0;
+let decimalOnScreen = 0;
 
 let op_registered = 0;
 let operator = null;
@@ -50,6 +50,12 @@ function resetOperands(){
     firstOperand = 0;
     secondOperand = 0;
     result = 0;
+}
+
+// Utility function to enable and disable Decimal button
+decimalBtn.onclick = () => {decimalBtn.disabled = true;}
+function enableDecimal() {
+    decimalBtn.disabled = false;
 }
 
 
@@ -86,6 +92,7 @@ for(let i = 0; i < operatorBtns.length; i++) {
 
         mini_display.textContent = `${currentFirst} ${operator}`;
         display_value.textContent = currentFirst;
+        enableDecimal();
     }
 }
 
@@ -116,6 +123,7 @@ equalBtn.onclick = () => {
             mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
             display_value.textContent = result;
             computed = 1;
+            enableDecimal();
         }
     }
 }
