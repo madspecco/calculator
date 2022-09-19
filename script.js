@@ -16,9 +16,10 @@ const clearBtn = document.querySelector('#clear');
 // Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
-        if(display_value.textContent == 0 || op_registered === 1) {
+        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
             display_value.textContent = operandBtns[i].textContent;
             op_registered = 0;
+            computed = 0;
         }
 
         else {
@@ -40,6 +41,8 @@ clearBtn.onclick = () => {display_value.textContent = 0; mini_display.textConten
 let firstOperand = 0;
 let secondOperand = 0;
 let result = 0;
+let computed = 0;
+
 let op_registered = 0;
 let operator = null;
 
@@ -57,6 +60,7 @@ for(let i = 0; i < operatorBtns.length; i++) {
         mini_display.textContent = `${currentFirst} ${operator}`;
         display_value.textContent = currentFirst;        
     }
+
 }
 
 
@@ -73,9 +77,11 @@ equalBtn.onclick = () => {
         result = operate(operator, firstOperand, secondOperand);
         mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
         display_value.textContent = result;
+        computed = 1;
     }
-    
 }
+
+
 
 // Calculator Functions
 const add = function(operand1, operand2) {
