@@ -16,14 +16,14 @@ const clearBtn = document.querySelector('#clear');
 // Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
-        if(display_value.textContent == 0) {
+        if(display_value.textContent == 0 || op_registered === 1) {
             display_value.textContent = operandBtns[i].textContent;
+            op_registered = 0;
         }
 
         else {
             display_value.textContent += operandBtns[i].textContent; // for value use attribute in HTML
         }
-        
     });
 }
 
@@ -37,136 +37,45 @@ function resetOperands(){
 // Clear Display
 clearBtn.onclick = () => {display_value.textContent = 0; mini_display.textContent = ''; resetOperands()};
 
-/* 
-    1. Input first operand
-    2. Press Operator
-        a. Store Display Value in a variable
-        b. Reset Display
-    3. Input second operand
-    4. Press '='
-    5. Show result in display
-*/
-
 let firstOperand = 0;
 let secondOperand = 0;
 let result = 0;
+let op_registered = 0;
+let operator = null;
 
-// 1. Input whatever first operand
 
 for(let i = 0; i < operatorBtns.length; i++) {
-    const op_pressed = operatorBtns[i];
-    // 2. Press Operator
-    op_pressed.onclick = () => {
-        let pressed_value = op_pressed.value;
-        console.log(pressed_value);
-        // a. Store Display Value
-        // b. Reset Display
+    operatorBtns[i].onclick = () => {
+        operator = operatorBtns[i].value;
+        console.log(operator + " was registered"); // get the operator of the button that was clicked'
+        op_registered = 1;
+
         firstOperand = Number(display_value.textContent);
-        display_value.textContent = 0;
-        // c. Update Mini Display
-        mini_display.textContent = `${firstOperand} ${op_pressed.value}`;
+        let currentFirst= firstOperand;
+        console.log(firstOperand + " holds firstOperand");
+
+        mini_display.textContent = `${currentFirst} ${operator}`;
+        display_value.textContent = currentFirst;        
+    }
+}
 
 
-        addBtn.onclick = () => {
-            secondOperand = Number(display_value.textContent);
-            result = operate(addBtn.value, firstOperand, secondOperand);
-            console.log(result);
-            display_value.textContent = result;
-            mini_display.textContent = `${result} ${addBtn.value}`;
-            addBtn.disabled = true;
-        }
-
-        subtractBtn.onclick = () => {
-            mini_display.textContent = `${result} ${subtractBtn.value}`;
-
-            firstOperand = result;
-            console.log(firstOperand);
-
-            // need revising
-        }
-
-        // addBtn.disabled = true;
-        // subtractBtn.disabled = true;
-        // multiplyBtn.disabled = true;
-        // divideBtn.disabled = true;
-        
-        // 3. Input second operand then 4. Press '='
-        equalBtn.onclick = () => {
-            // 5. Show Result in display & mini display
-            secondOperand = Number(display_value.textContent);
-            result = operate(op_pressed.value, firstOperand, secondOperand);
-            display_value.textContent = result;
-            mini_display.textContent = `${firstOperand} ${op_pressed.value} ${secondOperand} =`;
-            
-            // addBtn.disabled = false;
-            // subtractBtn.disabled = false;
-            // multiplyBtn.disabled = false;
-            // divideBtn.disabled = false;
-        };
-
-        }
+equalBtn.onclick = () => {
+    if(operator === null) {
+        console.log("You suck at math, buddy.");
     }
 
+    else {
+        secondOperand = Number(display_value.textContent);
+        console.log(firstOperand + " holds firstOperand");
+        console.log(secondOperand + " holds secondOperand");
 
-
-
-
-// addBtn.onclick = () => {
-//     firstOperand = Number(display_value.textContent);
-//     display_value.textContent = 0;
-//     mini_display.textContent = `${firstOperand} ${addBtn.textContent}`;
-//     // console.log(firstOperand);
-
-//     equalBtn.onclick = () => {
-//         secondOperand = Number(display_value.textContent);
-//         // console.log(secondOperand);
-//         display_value.textContent = operate(add, firstOperand, secondOperand);
-//         mini_display.textContent = `${firstOperand} + ${secondOperand} =`;
-//     }
-// }
-
-// subtractBtn.onclick = () => {
-//     firstOperand = Number(display_value.textContent);
-//     display_value.textContent = 0;
-//     mini_display.textContent = `${firstOperand} ${subtractBtn.textContent}`;
-//     // console.log(firstOperand);
-
-//     equalBtn.onclick = () => {
-//         secondOperand = Number(display_value.textContent);
-//         // console.log(secondOperand);
-//         display_value.textContent = operate(subtract, firstOperand, secondOperand);
-//         mini_display.textContent = `${firstOperand} ${subtractBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
-//     }
-// }
-
-// multiplyBtn.onclick = () => {
-//     firstOperand = Number(display_value.textContent);
-//     display_value.textContent = 0;
-//     mini_display.textContent = `${firstOperand} ${multiplyBtn.textContent}`;
-//     // console.log(firstOperand);
-
-//     equalBtn.onclick = () => {
-//         secondOperand = Number(display_value.textContent);
-//         // console.log(secondOperand);
-//         display_value.textContent = operate(multiply, firstOperand, secondOperand);
-//         mini_display.textContent = `${firstOperand} ${multiplyBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
-//     }
-// }
-
-// divideBtn.onclick = () => {
-//     firstOperand = Number(display_value.textContent);
-//     display_value.textContent = 0;
-//     mini_display.textContent = `${firstOperand} ${divideBtn.textContent}`;
-//     // console.log(firstOperand);
-
-//     equalBtn.onclick = () => {
-//         secondOperand = Number(display_value.textContent);
-//         // console.log(secondOperand);
-//         display_value.textContent = operate(divide, firstOperand, secondOperand);
-//         mini_display.textContent = `${firstOperand} ${divideBtn.textContent} ${secondOperand} ${equalBtn.textContent}`;
-//     }
-// }
-
+        result = operate(operator, firstOperand, secondOperand);
+        mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+        display_value.textContent = result;
+    }
+    
+}
 
 // Calculator Functions
 const add = function(operand1, operand2) {
