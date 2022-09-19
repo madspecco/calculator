@@ -25,6 +25,7 @@ let operator = null;
 clearBtn.onclick = () => {
     display_value.textContent = 0;
     mini_display.textContent = '';
+    operator = null;
     resetOperands();
     enableBtns();
 };
@@ -155,7 +156,5 @@ function operate(operator, op1, op2) {
 
     if (operator === '/') {
         return divide(op1, op2);
-        // return Math.round(divide(op1, op2) * 10) / 10;
-
     }
 }
