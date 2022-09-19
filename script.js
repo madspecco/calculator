@@ -18,11 +18,14 @@ let firstOperand = 0;
 let secondOperand = 0;
 let result = 0;
 let computed = 0;
-let decimalOnScreen = 0;
 let op_registered = 0;
 let operator = null;
 
 /* Utility Functions */
+
+decimalBtn.onclick = () => {
+    decimalBtn.disabled = true;
+};
 
 // Clear Display
 clearBtn.onclick = () => {
@@ -41,7 +44,6 @@ function restart() {
     operator = null;
     resetOperands();
     enableBtns();
-    enableDecimal();
 }
 
 
@@ -69,11 +71,6 @@ function resetOperands(){
 }
 
 
-// Utility function to enable and disable Decimal button
-decimalBtn.onclick = () => {decimalBtn.disabled = true;}
-function enableDecimal() {
-    decimalBtn.disabled = false;
-}
 
 /* Core Functionality */
 
@@ -106,6 +103,8 @@ for(let i = 0; i < operandBtns.length; i++) {
 // Use Calculator
 for(let i = 0; i < operatorBtns.length; i++) {
     operatorBtns[i].onclick = () => {
+        decimalBtn.disabled = false;
+
         if(display_value.textContent === '.') {
             restart();
         }
@@ -119,7 +118,6 @@ for(let i = 0; i < operatorBtns.length; i++) {
     
             mini_display.textContent = `${currentFirst} ${operator}`;
             display_value.textContent = currentFirst;
-            enableDecimal();
         }
     }
 }
@@ -127,6 +125,7 @@ for(let i = 0; i < operatorBtns.length; i++) {
 
 // After Inputting Second Operand
 equalBtn.onclick = () => {
+    decimalBtn.disabled = false;
     if(operator === null) {
         console.log("You suck at math, buddy.");
         resetOperands();
@@ -151,7 +150,6 @@ equalBtn.onclick = () => {
             mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
             display_value.textContent = result;
             computed = 1;
-            enableDecimal();
         }
     }
 }
