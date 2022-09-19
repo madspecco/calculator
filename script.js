@@ -98,29 +98,24 @@ equalBtn.onclick = () => {
     else {
         if(Number(display_value.textContent) === result) {
             enableBtns();
-
             firstOperand = result;
+            result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
 
-            result = operate(operator, result, secondOperand);
             mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
             display_value.textContent = result;
+            computed = 1;
         }
 
 
         else {
             enableBtns();
-
             secondOperand = Number(display_value.textContent);
-    
-            result = operate(operator, firstOperand, secondOperand);
-    
+            result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
+
             mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-    
             display_value.textContent = result;
-    
             computed = 1;
         }
-        
     }
 }
 
@@ -160,7 +155,7 @@ function operate(operator, op1, op2) {
 
     if (operator === '/') {
         return divide(op1, op2);
+        // return Math.round(divide(op1, op2) * 10) / 10;
+
     }
 }
-
-// console.log(operate(add, 2, 5));
