@@ -80,7 +80,7 @@ for(let i = 0; i < operatorBtns.length; i++) {
         op_registered = 1;
 
         firstOperand = Number(display_value.textContent);
-        let currentFirst= firstOperand;
+        let currentFirst = firstOperand;
         console.log(firstOperand + " holds firstOperand");
 
         mini_display.textContent = `${currentFirst} ${operator}`;
@@ -91,33 +91,36 @@ for(let i = 0; i < operatorBtns.length; i++) {
 equalBtn.onclick = () => {
     if(operator === null) {
         console.log("You suck at math, buddy.");
+
         resetOperands();
     }
 
     else {
-
-        // if(secondOperand !== 0) {
-        //     enableBtns();
-        //     result = operate(operator, result, secondOperand);
-
-        //     mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-        //     display_value.textContent = result;
-        //     computed = 1;
-
-        // }
-
-        // else {
+        if(Number(display_value.textContent) === result) {
             enableBtns();
-            secondOperand = Number(display_value.textContent);
-            console.log(firstOperand + " holds firstOperand");
-            console.log(secondOperand + " holds secondOperand");
-    
-            result = operate(operator, firstOperand, secondOperand);
+
+            firstOperand = result;
+
+            result = operate(operator, result, secondOperand);
             mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
             display_value.textContent = result;
-            computed = 1;
-        // }
+        }
 
+
+        else {
+            enableBtns();
+
+            secondOperand = Number(display_value.textContent);
+    
+            result = operate(operator, firstOperand, secondOperand);
+    
+            mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+    
+            display_value.textContent = result;
+    
+            computed = 1;
+        }
+        
     }
 }
 
