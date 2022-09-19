@@ -13,9 +13,52 @@ const equalBtn = document.querySelector('#equals');
 const clearBtn = document.querySelector('#clear');
 
 
+let firstOperand = 0;
+let secondOperand = 0;
+let result = 0;
+let computed = 0;
+
+let op_registered = 0;
+let operator = null;
+
+// Clear Display
+clearBtn.onclick = () => {
+    display_value.textContent = 0;
+    mini_display.textContent = '';
+    resetOperands();
+    enableBtns();
+};
+
+// Utility Function to disable/enable buttons
+function enableBtns() {
+    addBtn.disabled = false;
+    subtractBtn.disabled = false;
+    multiplyBtn.disabled = false;
+    divideBtn.disabled = false;
+}
+
+function disableBtns() {
+    addBtn.disabled = true;
+    subtractBtn.disabled = true;
+    multiplyBtn.disabled = true;
+    divideBtn.disabled = true;
+}
+
+// Utility Function to reset Operands after an operation/clear
+function resetOperands(){
+    firstOperand = 0;
+    secondOperand = 0;
+    result = 0;
+}
+
+
 // Populate Display
 for(let i = 0; i < operandBtns.length; i++) {
     operandBtns[i].addEventListener('click', function() {
+        if(firstOperand !== 0) {
+            disableBtns();
+        }
+
         if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
             display_value.textContent = operandBtns[i].textContent;
             op_registered = 0;
@@ -28,23 +71,6 @@ for(let i = 0; i < operandBtns.length; i++) {
     });
 }
 
-// Utility Function to reset Operands after an operation/clear
-function resetOperands(){
-    firstOperand = 0;
-    secondOperand = 0;
-    result = 0;
-}
-
-// Clear Display
-clearBtn.onclick = () => {display_value.textContent = 0; mini_display.textContent = ''; resetOperands()};
-
-let firstOperand = 0;
-let secondOperand = 0;
-let result = 0;
-let computed = 0;
-
-let op_registered = 0;
-let operator = null;
 
 
 for(let i = 0; i < operatorBtns.length; i++) {
@@ -58,26 +84,40 @@ for(let i = 0; i < operatorBtns.length; i++) {
         console.log(firstOperand + " holds firstOperand");
 
         mini_display.textContent = `${currentFirst} ${operator}`;
-        display_value.textContent = currentFirst;        
+        display_value.textContent = currentFirst;
     }
-
 }
-
 
 equalBtn.onclick = () => {
     if(operator === null) {
         console.log("You suck at math, buddy.");
+        resetOperands();
     }
 
     else {
-        secondOperand = Number(display_value.textContent);
-        console.log(firstOperand + " holds firstOperand");
-        console.log(secondOperand + " holds secondOperand");
 
-        result = operate(operator, firstOperand, secondOperand);
-        mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-        display_value.textContent = result;
-        computed = 1;
+        // if(secondOperand !== 0) {
+        //     enableBtns();
+        //     result = operate(operator, result, secondOperand);
+
+        //     mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+        //     display_value.textContent = result;
+        //     computed = 1;
+
+        // }
+
+        // else {
+            enableBtns();
+            secondOperand = Number(display_value.textContent);
+            console.log(firstOperand + " holds firstOperand");
+            console.log(secondOperand + " holds secondOperand");
+    
+            result = operate(operator, firstOperand, secondOperand);
+            mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+            display_value.textContent = result;
+            computed = 1;
+        // }
+
     }
 }
 
