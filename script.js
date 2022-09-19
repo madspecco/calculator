@@ -37,6 +37,7 @@ function restart() {
     operator = null;
     resetOperands();
     enableBtns();
+    enableDecimal();
 }
 
 // Utility Function to disable/enable buttons
@@ -91,16 +92,23 @@ for(let i = 0; i < operandBtns.length; i++) {
 // Use Calculator
 for(let i = 0; i < operatorBtns.length; i++) {
     operatorBtns[i].onclick = () => {
-        operator = operatorBtns[i].value;
-        console.log(operator + " was registered"); // get the operator of the button that was clicked'
-        op_registered = 1;
+        if(display_value.textContent === '.') {
+            restart();
+        }
+        else {
+            operator = operatorBtns[i].value;
+            console.log(operator + " was registered"); // get the operator of the button that was clicked'
+            op_registered = 1;
+    
+            firstOperand = Number(display_value.textContent);
+            let currentFirst = firstOperand;
+    
+            mini_display.textContent = `${currentFirst} ${operator}`;
+            display_value.textContent = currentFirst;
+            enableDecimal();
+        }
 
-        firstOperand = Number(display_value.textContent);
-        let currentFirst = firstOperand;
-
-        mini_display.textContent = `${currentFirst} ${operator}`;
-        display_value.textContent = currentFirst;
-        enableDecimal();
+        
     }
 }
 
