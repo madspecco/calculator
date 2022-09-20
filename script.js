@@ -181,6 +181,12 @@ signBtn.onclick = () => {
 }
 
 
+// Keyboard Support
+window.addEventListener('keydown', function(e) {
+    console.log(e);
+});
+
+
 // Calculator Functions
 const add = function(operand1, operand2) {
     return Number(operand1 + operand2);
