@@ -86,12 +86,6 @@ function populateDisplay() {
             if(display_value.textContent.length > 7) {
                 display_value.textContent = display_value.textContent.substring(0, 7);
             }
-
-            if(operator === '/' && operandBtns[i].textContent === '0') {
-                alert('Did you just try to divide by 0?🤨🤨🤨');
-                alert("Don't worry, I gotchu.");
-                restart();
-            }
     
             if(firstOperand !== 0) {
                 disableBtns();
@@ -138,16 +132,24 @@ function getFirstOperand(){
 // Equal Button
 equalBtn.onclick = () => {
     decimalBtn.disabled = false;
+
+    if(operator === '/' && display_value.textContent === '0') {
+        alert('Did you just try to divide by 0?🤨🤨🤨');
+        alert("Don't worry, I gotchu.");
+        restart();
+    }
+
     if(operator === null) {
         resetOperands();
     }
+
     else {
         if(Number(display_value.textContent) === result) {
             firstOperand = result;
             result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
 
             // in case the result is bigger than the screen we reset the calculator
-            if(result.toString().length > 7) {
+            if(result.toString().length > 8) {
                 alert("Uh-oh! Looks like that's a bigger number than we can handle.");
                 alert("Let me help you with that.");
                 restart();
@@ -166,7 +168,7 @@ equalBtn.onclick = () => {
             result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
 
             // in case the result is bigger than the screen we reset the calculator
-            if(result.toString().length > 7) {
+            if(result.toString().length > 8) {
                 alert("Uh-oh! Looks like that's a bigger number than we can handle.");
                 alert("Let me help you with that.");
                 restart();
@@ -289,6 +291,19 @@ window.addEventListener('keydown', function(e) {
     // Computing Result
     if(e.key === 'Enter') {
         decimalBtn.disabled = false;
+
+        if(operator === '/' && display_value.textContent === '0') {
+            alert('Did you just try to divide by 0?🤨🤨🤨');
+            alert("Don't worry, I gotchu.");
+            restart();
+        }
+
+        if(result.toString().length > 8) {
+            alert("Uh-oh! Looks like that's a bigger number than we can handle.");
+            alert("Let me help you with that.");
+            restart();
+        }
+
         if(operator === null) {
             resetOperands();
         }
@@ -298,7 +313,7 @@ window.addEventListener('keydown', function(e) {
                 firstOperand = result;
                 result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
 
-                if(result.toString().length > 7) {
+                if(result.toString().length > 8) {
                     alert("Uh-oh! Looks like that's a bigger number than we can handle.");
                     alert("Let me help you with that.");
                     restart();
@@ -315,7 +330,7 @@ window.addEventListener('keydown', function(e) {
                 secondOperand = Number(display_value.textContent);
                 result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
                 
-                if(result.toString().length > 7) {
+                if(result.toString().length > 8) {
                     alert("Uh-oh! Looks like that's a bigger number than we can handle.");
                     alert("Let me help you with that.");
                     restart();

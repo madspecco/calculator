@@ -1,11 +1,6 @@
 html {
     text-align: center;
-    /*  #2C3639
-        #3F4E4F
-        #A27B5C
-        #DCD7C9
-    */
-    font-family: 'Scientific Calculator LCD', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #DCD7C9;
     height: 933px;
 }
@@ -20,8 +15,6 @@ h1 {
     justify-content: center;
     align-content: center;
     align-items: center;
-    /* min-height: 95vh; */
-    /* height: 100vh; */
     overflow: hidden;
     background-color: #DCD7C9;
     margin-top: 4rem;
@@ -42,7 +35,7 @@ h1 {
 
     justify-content: flex-end;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.5rem;
     background-color: #2C3639;
     color: #DCD7C9;
 }
@@ -53,10 +46,9 @@ h1 {
 
     justify-content: flex-end;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     background-color: #2C3639;
     color: #DCD7C9;
-    /* overflow: hidden; */
 }
 
 #zero {
@@ -82,7 +74,8 @@ h1 {
 button {
     cursor: pointer;
     border-radius: .25rem;
-    font-family: 'Scientific Calculator LCD', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
 }
 
 button:hover {
@@ -103,4 +96,12 @@ button:active {
     color: #2C3639;
     font-size: 18px;
     width: 100%;
+}
+
+a {
+    color: #2C3639;
+}
+
+a:visited {
+    color: #2C3639;
 }
