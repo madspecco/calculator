@@ -28,10 +28,28 @@ let operator = null;
 window.addEventListener('keydown', function(e) {
     
     console.log(e.key);
+
+    // Populating Display
     if(e.key >= 0 && e.key <= 9) {
-        console.log('should populate display');
-        populateDisplay();
+        if(firstOperand !== 0) {
+            disableBtns();
+        }
+
+        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
+            display_value.textContent = e.key;
+            op_registered = 0;
+            computed = 0;
+        }
+
+        else {
+            display_value.textContent += e.key; // for value use attribute in HTML
+        }
     }
+
+    // // Registering Operator
+    // if(e.key === '+' || e.key === '-' || e.key === '*' ||e.key === '/' ) {
+
+    // }
 });
 
 // Decimal Button
@@ -88,6 +106,8 @@ function resetOperands(){
 /* Core Functionality */
 
 // Populate Display
+operandBtns.onclick = populateDisplay();
+
 function populateDisplay() {
     for(let i = 0; i < operandBtns.length; i++) {
         operandBtns[i].addEventListener('click', function() {
@@ -114,34 +134,31 @@ function populateDisplay() {
     }    
 }
 
-operandBtns.onclick = populateDisplay();
-
-
-
 // Use Calculator
-for(let i = 0; i < operatorBtns.length; i++) {
-    operatorBtns[i].onclick = () => {
-        decimalBtn.disabled = false;
+operatorBtns.onclick = getFirstOperand();
 
-        if(display_value.textContent === '.') {
-            restart();
-        }
-        else {
-            operator = operatorBtns[i].value;
-            console.log(operator + " was registered"); // get the operator of the button that was clicked'
-            op_registered = 1;
+function getFirstOperand(){
+    for(let i = 0; i < operatorBtns.length; i++) {
+        operatorBtns[i].onclick = () => {
+            decimalBtn.disabled = false;
     
-            firstOperand = Number(display_value.textContent);
-            let currentFirst = firstOperand;
-    
-            mini_display.textContent = `${currentFirst} ${operator}`;
-            display_value.textContent = currentFirst;
+            if(display_value.textContent === '.') {
+                restart();
+            }
+            else {
+                operator = operatorBtns[i].value;
+                console.log(operator + " was registered"); // get the operator of the button that was clicked'
+                op_registered = 1;
+        
+                firstOperand = Number(display_value.textContent);
+                let currentFirst = firstOperand;
+        
+                mini_display.textContent = `${currentFirst} ${operator}`;
+                display_value.textContent = currentFirst;
+            }
         }
     }
 }
-
-// TO ENABLE KBD INPUT MAKE ALL THE .onlclick events call a function
-// then call said function in the keydown event in the upper side of code
 
 // After Inputting Second Operand
 equalBtn.onclick = () => {
