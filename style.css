@@ -8,6 +8,7 @@ html {
 h1 {
     color:#2C3639;
     margin-top: 2.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #calculator {
@@ -38,6 +39,8 @@ h1 {
     font-size: 1.5rem;
     background-color: #2C3639;
     color: #DCD7C9;
+    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #display {
@@ -49,6 +52,8 @@ h1 {
     font-size: 4.5rem;
     background-color: #2C3639;
     color: #DCD7C9;
+    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #zero {
@@ -81,6 +86,7 @@ button {
 button:hover {
     color: #DCD7C9;
     background-color: #2C3639
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 button:active {
@@ -100,8 +106,10 @@ button:active {
 
 a {
     color: #2C3639;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a:visited {
     color: #2C3639;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
