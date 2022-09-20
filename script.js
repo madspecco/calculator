@@ -136,22 +136,30 @@ function getFirstOperand(){
     }
 }
 
-// After Inputting Second Operand
+// Equal Button
 equalBtn.onclick = () => {
     decimalBtn.disabled = false;
     if(operator === null) {
         console.log("You suck at math, buddy.");
         resetOperands();
     }
-
     else {
         if(Number(display_value.textContent) === result) {
             firstOperand = result;
             result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
 
-            mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-            display_value.textContent = result;
-            computed = 1;
+            // in case the result is bigger than the screen we reset the calculator
+            if(result.toString().length > 7) {
+                alert("Uh-oh! Looks like that's a bigger number than we can handle.");
+                alert("Let me help you with that.");
+                restart();
+            }
+            else {
+                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                display_value.textContent = result;
+                computed = 1;
+            }
+   
         }
 
         else {
@@ -159,9 +167,18 @@ equalBtn.onclick = () => {
             secondOperand = Number(display_value.textContent);
             result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
 
-            mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-            display_value.textContent = result;
-            computed = 1;
+            // in case the result is bigger than the screen we reset the calculator
+            if(result.toString().length > 7) {
+                alert("Uh-oh! Looks like that's a bigger number than we can handle.");
+                alert("Let me help you with that.");
+                restart();
+            }
+            else {
+                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                display_value.textContent = result;
+                computed = 1;
+            }
+
         }
     }
 }
@@ -235,8 +252,8 @@ window.addEventListener('keydown', function(e) {
 
     // Populating Display
     if(e.key >= 0 && e.key <= 9) {
-        if(display_value.textContent.length > 8) {
-            display_value.textContent = display_value.textContent.substring(0, 8);
+        if(display_value.textContent.length > 7) {
+            display_value.textContent = display_value.textContent.substring(0, 7);
         }
 
         if(firstOperand !== 0) {
@@ -285,20 +302,36 @@ window.addEventListener('keydown', function(e) {
             if(Number(display_value.textContent) === result) {
                 firstOperand = result;
                 result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
-    
-                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-                display_value.textContent = result;
-                computed = 1;
+
+                if(result.toString().length > 7) {
+                    alert("Uh-oh! Looks like that's a bigger number than we can handle.");
+                    alert("Let me help you with that.");
+                    restart();
+                }
+                else {
+                    mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                    display_value.textContent = result;
+                    computed = 1;
+                }
             }
     
             else {
                 enableBtns();
                 secondOperand = Number(display_value.textContent);
                 result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
-    
-                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
-                display_value.textContent = result;
-                computed = 1;
+                
+                if(result.toString().length > 7) {
+                    alert("Uh-oh! Looks like that's a bigger number than we can handle.");
+                    alert("Let me help you with that.");
+                    restart();
+                }
+
+                else {
+                    mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                    display_value.textContent = result;
+                    computed = 1;
+                }
+
             }
         }        
     }
@@ -324,8 +357,8 @@ window.addEventListener('keydown', function(e) {
             decimalBtn.disabled = true;
         }
         else {
-            if(display_value.textContent.length > 8) {
-                display_value.textContent = display_value.textContent.substring(0, 8);
+            if(display_value.textContent.length > 7) {
+                display_value.textContent = display_value.textContent.substring(0, 7);
             }
 
             if(firstOperand !== 0) {
