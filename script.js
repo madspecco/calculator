@@ -123,7 +123,6 @@ function getFirstOperand(){
             }
             else {
                 operator = operatorBtns[i].value;
-                console.log(operator + " was registered"); // get the operator of the button that was clicked'
                 op_registered = 1;
         
                 firstOperand = Number(display_value.textContent);
@@ -140,7 +139,6 @@ function getFirstOperand(){
 equalBtn.onclick = () => {
     decimalBtn.disabled = false;
     if(operator === null) {
-        console.log("You suck at math, buddy.");
         resetOperands();
     }
     else {
@@ -190,7 +188,6 @@ deleteBtn.onclick = () => {
     }
 
     else {
-        console.log(display_value.textContent.slice(0, -1));
         if(display_value.textContent.slice(0, -1).includes('.') === false) {
             decimalBtn.disabled = false;
         }
@@ -279,7 +276,6 @@ window.addEventListener('keydown', function(e) {
         }
         else {
             operator = e.key;
-            console.log(operator + " was registered"); // get the operator of the button that was clicked'
             op_registered = 1;
     
             firstOperand = Number(display_value.textContent);
@@ -294,7 +290,6 @@ window.addEventListener('keydown', function(e) {
     if(e.key === 'Enter') {
         decimalBtn.disabled = false;
         if(operator === null) {
-            console.log("You suck at math, buddy.");
             resetOperands();
         }
     
@@ -343,7 +338,6 @@ window.addEventListener('keydown', function(e) {
         }
     
         else {
-            console.log(display_value.textContent.slice(0, -1));
             if(display_value.textContent.slice(0, -1).includes('.') === false) {
                 decimalBtn.disabled = false;
             }
