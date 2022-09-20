@@ -24,6 +24,25 @@ let operator = null;
 
 /* Utility Functions */
 
+// Keyboard Support
+window.addEventListener('keydown', function(e) {
+    const kbd = document.querySelector(`button[data-key="${e.key}"]`);
+    
+    console.log(e.key);
+    if(e.key >= 0 && e.key <=9){
+        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
+            display_value.textContent = e.key;
+            op_registered = 0;
+            computed = 0;
+        }
+
+        else {
+            display_value.textContent += e.key; // for value use attribute in HTML
+        }
+    }
+});
+
+// Decimal Button
 decimalBtn.onclick = () => {
     decimalBtn.disabled = true;
 };
@@ -181,10 +200,7 @@ signBtn.onclick = () => {
 }
 
 
-// Keyboard Support
-window.addEventListener('keydown', function(e) {
-    console.log(e);
-});
+
 
 
 // Calculator Functions
