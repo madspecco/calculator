@@ -24,34 +24,6 @@ let operator = null;
 
 /* Utility Functions */
 
-// Keyboard Support
-window.addEventListener('keydown', function(e) {
-    
-    console.log(e.key);
-
-    // Populating Display
-    if(e.key >= 0 && e.key <= 9) {
-        if(firstOperand !== 0) {
-            disableBtns();
-        }
-
-        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
-            display_value.textContent = e.key;
-            op_registered = 0;
-            computed = 0;
-        }
-
-        else {
-            display_value.textContent += e.key; // for value use attribute in HTML
-        }
-    }
-
-    // // Registering Operator
-    // if(e.key === '+' || e.key === '-' || e.key === '*' ||e.key === '/' ) {
-
-    // }
-});
-
 // Decimal Button
 decimalBtn.onclick = () => {
     decimalBtn.disabled = true;
@@ -100,7 +72,6 @@ function resetOperands(){
     secondOperand = 0;
     result = 0;
 }
-
 
 
 /* Core Functionality */
@@ -216,9 +187,6 @@ signBtn.onclick = () => {
 }
 
 
-
-
-
 // Calculator Functions
 const add = function(operand1, operand2) {
     return Number(operand1 + operand2);
@@ -255,3 +223,121 @@ function operate(operator, op1, op2) {
         return divide(op1, op2);
     }
 }
+
+
+/* Keyboard Support */
+window.addEventListener('keydown', function(e) {
+
+    // Populating Display
+    if(e.key >= 0 && e.key <= 9) {
+        if(firstOperand !== 0) {
+            disableBtns();
+        }
+
+        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
+            display_value.textContent = e.key;
+            op_registered = 0;
+            computed = 0;
+        }
+
+        else {
+            display_value.textContent += e.key; // for value use attribute in HTML
+        }
+    }
+
+    // Registering Operator
+    if(e.key === '+' || e.key === '-' || e.key === '*' ||e.key === '/' ) {
+        decimalBtn.disabled = false;
+        if(display_value.textContent === '.') {
+            restart();
+        }
+        else {
+            operator = e.key;
+            console.log(operator + " was registered"); // get the operator of the button that was clicked'
+            op_registered = 1;
+    
+            firstOperand = Number(display_value.textContent);
+            let currentFirst = firstOperand;
+    
+            mini_display.textContent = `${currentFirst} ${operator}`;
+            display_value.textContent = currentFirst;
+        }
+    }
+
+    // Computing Result
+    if(e.key === 'Enter') {
+        decimalBtn.disabled = false;
+        if(operator === null) {
+            console.log("You suck at math, buddy.");
+            resetOperands();
+        }
+    
+        else {
+            if(Number(display_value.textContent) === result) {
+                firstOperand = result;
+                result = Math.round(operate(operator, result, secondOperand) * 10) / 10;
+    
+                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                display_value.textContent = result;
+                computed = 1;
+            }
+    
+            else {
+                enableBtns();
+                secondOperand = Number(display_value.textContent);
+                result = Math.round(operate(operator, firstOperand, secondOperand) * 10) / 10;
+    
+                mini_display.textContent = `${firstOperand} ${operator} ${secondOperand} =`;
+                display_value.textContent = result;
+                computed = 1;
+            }
+        }        
+    }
+
+    // Backspace Function
+    if(e.key === 'Backspace') {
+        if(display_value.textContent === '' || display_value.textContent.length === 1) {
+            display_value.textContent = '0';
+        }
+    
+        else {
+            console.log(display_value.textContent.slice(0, -1));
+            if(display_value.textContent.slice(0, -1).includes('.') === false) {
+                decimalBtn.disabled = false;
+            }
+            display_value.textContent = display_value.textContent.slice(0, -1);
+        }        
+    }
+
+    // Decimal Function
+    if(e.key === '.') {
+        if(display_value.textContent.includes('.')) {
+            decimalBtn.disabled = true;
+        }
+        else {
+            if(firstOperand !== 0) {
+                disableBtns();
+            }
+    
+            if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
+                display_value.textContent = e.key;
+                op_registered = 0;
+                computed = 0;
+            }
+    
+            else {
+                display_value.textContent += e.key; // for value use attribute in HTML
+            }
+        }
+    }   
+
+    // Clear Display
+    if(e.key === 'Escape') {
+        display_value.textContent = 0;
+        mini_display.textContent = '';
+        operator = null;
+        resetOperands();
+        enableBtns();
+        decimalBtn.disabled = false;        
+    }
+});
