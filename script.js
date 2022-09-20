@@ -82,6 +82,11 @@ operandBtns.onclick = populateDisplay();
 function populateDisplay() {
     for(let i = 0; i < operandBtns.length; i++) {
         operandBtns[i].addEventListener('click', function() {
+
+            if(display_value.textContent.length > 7) {
+                display_value.textContent = display_value.textContent.substring(0, 7);
+            }
+
             if(operator === '/' && operandBtns[i].textContent === '0') {
                 alert('Did you just try to divide by 0?🤨🤨🤨');
                 alert("Don't worry, I gotchu.");
@@ -230,6 +235,10 @@ window.addEventListener('keydown', function(e) {
 
     // Populating Display
     if(e.key >= 0 && e.key <= 9) {
+        if(display_value.textContent.length > 8) {
+            display_value.textContent = display_value.textContent.substring(0, 8);
+        }
+
         if(firstOperand !== 0) {
             disableBtns();
         }
@@ -315,6 +324,10 @@ window.addEventListener('keydown', function(e) {
             decimalBtn.disabled = true;
         }
         else {
+            if(display_value.textContent.length > 8) {
+                display_value.textContent = display_value.textContent.substring(0, 8);
+            }
+
             if(firstOperand !== 0) {
                 disableBtns();
             }
