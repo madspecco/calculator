@@ -26,19 +26,11 @@ let operator = null;
 
 // Keyboard Support
 window.addEventListener('keydown', function(e) {
-    const kbd = document.querySelector(`button[data-key="${e.key}"]`);
     
     console.log(e.key);
-    if(e.key >= 0 && e.key <=9){
-        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
-            display_value.textContent = e.key;
-            op_registered = 0;
-            computed = 0;
-        }
-
-        else {
-            display_value.textContent += e.key; // for value use attribute in HTML
-        }
+    if(e.key >= 0 && e.key <= 9) {
+        console.log('should populate display');
+        populateDisplay();
     }
 });
 
@@ -96,29 +88,34 @@ function resetOperands(){
 /* Core Functionality */
 
 // Populate Display
-for(let i = 0; i < operandBtns.length; i++) {
-    operandBtns[i].addEventListener('click', function() {
-        if(operator === '/' && operandBtns[i].textContent === '0') {
-            alert('Did you just try to divide by 0?🤨🤨🤨');
-            alert("Don't worry, I gotchu.");
-            restart();
-        }
-
-        if(firstOperand !== 0) {
-            disableBtns();
-        }
-
-        if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
-            display_value.textContent = operandBtns[i].textContent;
-            op_registered = 0;
-            computed = 0;
-        }
-
-        else {
-            display_value.textContent += operandBtns[i].textContent; // for value use attribute in HTML
-        }
-    });
+function populateDisplay() {
+    for(let i = 0; i < operandBtns.length; i++) {
+        operandBtns[i].addEventListener('click', function() {
+            if(operator === '/' && operandBtns[i].textContent === '0') {
+                alert('Did you just try to divide by 0?🤨🤨🤨');
+                alert("Don't worry, I gotchu.");
+                restart();
+            }
+    
+            if(firstOperand !== 0) {
+                disableBtns();
+            }
+    
+            if(display_value.textContent == 0 || op_registered === 1 || computed === 1) {
+                display_value.textContent = operandBtns[i].textContent;
+                op_registered = 0;
+                computed = 0;
+            }
+    
+            else {
+                display_value.textContent += operandBtns[i].textContent; // for value use attribute in HTML
+            }
+        });
+    }    
 }
+
+operandBtns.onclick = populateDisplay();
+
 
 
 // Use Calculator
@@ -143,6 +140,8 @@ for(let i = 0; i < operatorBtns.length; i++) {
     }
 }
 
+// TO ENABLE KBD INPUT MAKE ALL THE .onlclick events call a function
+// then call said function in the keydown event in the upper side of code
 
 // After Inputting Second Operand
 equalBtn.onclick = () => {
