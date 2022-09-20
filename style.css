@@ -7,11 +7,12 @@ html {
     */
     font-family: 'Scientific Calculator LCD', sans-serif;
     background-color: #DCD7C9;
+    height: 900px;
 }
 
 h1 {
     color:#2C3639;
-    margin-top: 5rem;
+    margin-top: 2.5rem;
 }
 
 #calculator {
@@ -19,10 +20,12 @@ h1 {
     justify-content: center;
     align-content: center;
     align-items: center;
-    min-height: 95vh;
-    height: 100vh;
+    /* min-height: 95vh; */
+    /* height: 100vh; */
     overflow: hidden;
     background-color: #DCD7C9;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 #container {
@@ -99,4 +102,5 @@ button:active {
     background-color: #DCD7C9;
     color: #2C3639;
     font-size: 18px;
+    width: 100%;
 }
