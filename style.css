@@ -83,10 +83,20 @@ button {
     font-size: large;
 }
 
-button:hover {
+button.misc:hover {
+    color: #DCD7C9;
+    background-color: #2C3639;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button.operator:hover {
     color: #DCD7C9;
     background-color: #2C3639
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button.operand:hover {
+    color: #DCD7C9;
+    background-color: #2C3639;
 }
 
 button:active {
