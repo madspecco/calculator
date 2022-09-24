@@ -94,6 +94,11 @@ button.operator:hover {
     background-color: #2C3639
 }
 
+button#equals:hover {
+    color: #DCD7C9;
+    background-color: #2C3639
+}
+
 button.operand:hover {
     color: #DCD7C9;
     background-color: #2C3639;
